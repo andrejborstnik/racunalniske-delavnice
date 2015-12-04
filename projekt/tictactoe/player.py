@@ -18,6 +18,7 @@ class Player(object):
         """
         self.name = name
         self.symbol = symbol
+        self.won = 0
 
     def __str__(self):
         """Returns player representation as a string.

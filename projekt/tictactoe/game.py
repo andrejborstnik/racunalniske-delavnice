@@ -69,6 +69,9 @@ class Game(object):
                     print("It's a tie!")
                 else:
                     print("Player {} won!".format(self.players[winner]))
+                    self.players[winner].won += 1
+                    for j in range(len(self.players)):
+                        print("Player {0} won {1} game{2}!".format(self.players[j], self.players[j].won, 's' if self.players[j].won != 1 else ''))
                 break
 
             self.on_turn += 1
@@ -101,5 +104,5 @@ class Game(object):
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
-    G = Game(2,20,20,5)
+    G = Game(2,3,3,3)
     G.mainloop()
