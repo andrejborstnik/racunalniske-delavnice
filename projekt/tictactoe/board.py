@@ -4,7 +4,7 @@
 class Board(object):
     """Class representing a playing board."""
 
-    def __init__(self, width, height, players):
+    def __init__(self, width, height, players, size):
         """Initializes an empty board.
 
         :param int width: Width of the board.
@@ -17,14 +17,14 @@ class Board(object):
         self.height = height
         self.grid = [[None for i in range(width)] for j in range(height)]
         self.players = players
-        self.win_length = 3
+        self.win_length = size
         self.directions = [(-1, -1), (-1, 0), (-1, 1), (0, 1), (0, -1), (1, -1), (1, 0), (1, 1)]
 
     def __str__(self):
         """Nicely prints the current board.
 
         >>> from tictactoe.player import Player
-        >>> b = Board(3, 3, [Player('Leia', 'x')])
+        >>> b = Board(3, 3, [Player('Leia', 'x')], 3)
         >>> b.grid[1][1] = 0  # player number 0
         >>> print(b)
         +---+---+---+
@@ -58,7 +58,7 @@ class Board(object):
         :param int player_index: Index of the player that made the move.
         :raises: ValueError
 
-        >>> b = Board(3, 3, [])
+        >>> b = Board(3, 3, [], 3)
         >>> b.set(1, 0)
         >>> b.grid[0][0]
         0
@@ -70,7 +70,7 @@ class Board(object):
 
         if not 1 <= position <= self.width * self.height:
             raise ValueError("Position '{}' is out of range.".format(position))
-        y = (position - 1) // self.height
+        y = (position - 1) // self.width
         x = (position - 1) % self.width
         if self.grid[y][x] is not None:
             raise ValueError("Position '{}' is taken.".format(position))
@@ -84,7 +84,7 @@ class Board(object):
                   The second one is the winner, if it exists, or None otherwise.
         :rtype: tuple of (bool, int or None)
 
-        >>> b = Board(3, 3, [])
+        >>> b = Board(3, 3, [], 3)
         >>> b.set(1, 0)
         >>> b.set(5, 0)
         >>> b.finished()

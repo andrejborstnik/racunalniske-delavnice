@@ -8,8 +8,9 @@ class BoardTest(unittest.TestCase):
         """Set up a sample board."""
         self.width = 3
         self.height = 3
+        self.win_length = 3
         self.players = [player.Player('Luke', 'x'), player.Player('Leia', 'o')]
-        self.board = board.Board(self.width, self.height, self.players)
+        self.board = board.Board(self.width, self.height, self.players, self.win_length)
         self.directions = [(-1, -1), (-1,  0), (-1, 1), (0, 1),
                             (0, -1),  (1, -1),  (1, 0), (1, 1)]
 
@@ -18,7 +19,7 @@ class BoardTest(unittest.TestCase):
         self.assertEqual(self.board.height, self.height)
         self.assertEqual(self.board.width, self.width)
         self.assertEqual(self.board.players, self.players)
-        self.assertEqual(self.board.win_length, 3)
+        ## self.assertEqual(self.board.win_length, 3)
         self.assertEqual(self.board.directions, self.directions)
         self.assertEqual(self.board.grid, [[None] * self.width] * self.height)
 

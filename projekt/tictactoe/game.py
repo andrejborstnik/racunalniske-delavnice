@@ -6,14 +6,14 @@ from tictactoe import player, board, ioutil
 class Game(object):
     """Implementation of a complete game of Tic Tac Toe."""
 
-    def __init__(self, num_of_players, width, height):
+    def __init__(self, num_of_players, width, height, size):
         """Construct a game.
 
         :param int num_of_players: Number of players.
         :param int width: Width of the field.
         :param int height: Height of the field.
 
-        >>> g = Game(5, 3, 3)
+        >>> g = Game(5, 3, 3, 3)
         >>> g.num_of_players
         5
         >>> g.width
@@ -22,6 +22,7 @@ class Game(object):
         3
         """
         self.board = None
+        self.size = size
         self.width = width
         self.height = height
         self.num_of_players = num_of_players
@@ -47,7 +48,7 @@ class Game(object):
         A round start with an empty board and players make their moves in turn,
         until one is victorious or the board is filled.
         """
-        self.board = board.Board(self.width, self.height, self.players)
+        self.board = board.Board(self.width, self.height, self.players, self.size)
         self.round_counter += 1
         while True:
             print('Currently on turn: {}.'.format(self.players[self.on_turn]))
@@ -100,3 +101,5 @@ class Game(object):
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
+    G = Game(2,20,20,5)
+    G.mainloop()

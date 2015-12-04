@@ -7,6 +7,8 @@ from unittest import mock
 
 class TestIO(unittest.TestCase):
 
+    ## TODO test for output
+
     @mock.patch('builtins.input', return_value=' Ćrt\n9え')
     def test_get_player_name(self, mock_input):
         self.assertEqual(ioutil.get_player_name(1), ' Ćrt\n9え')

@@ -8,7 +8,8 @@ class GameTest(unittest.TestCase):
         self.num_of_players = 2
         self.width = 3
         self.height = 3
-        self.game = game.Game(2, 3, 3)
+        self.size = 3
+        self.game = game.Game(2, 3, 3, 3)
 
     def test_init(self):
         self.assertEqual(self.game.board, None)
